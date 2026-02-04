@@ -42,7 +42,7 @@ run().catch(console.dir);
 app.get('/', (req, res) => {
   //res.send('Hello World');// string 
   //res.sendFile('index.html'); // doesn't work without import
-  res.sendFile(join(__dirname, 'public', 'index.html'))
+  res.sendFile(join(__dirname, '', 'index.html'))
 })
 
 app.get('/inject', (req, res) => {
