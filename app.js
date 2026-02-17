@@ -40,13 +40,12 @@ run().catch(console.dir);
 
 // middlewares aka endpoints aka 'get to slash' {http verb} to slash {your name your endpoint}
 app.get('/', (req, res) => {
-<<<<<<< HEAD
+
   res.send('Hello World')
-=======
   //res.send('Hello World');// string 
   //res.sendFile('index.html'); // doesn't work without import
   res.sendFile(join(__dirname, 'public', 'index.html'))
->>>>>>> origin/dev
+
 })
 
 app.get('/inject', (req, res) => {
