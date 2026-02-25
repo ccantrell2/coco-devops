@@ -48,18 +48,11 @@ connectToMongo();
 
 // middlewares aka endpoints aka 'get to slash' {http verb} to slash {you name ur endpoint}
 app.get('/', (req, res) => {
-<<<<<<< HEAD
 
   res.send('Hello World')
   //res.send('Hello World');// string 
   //res.sendFile('index.html'); // doesn't work without import
   res.sendFile(join(__dirname, 'public', 'index.html'))
-=======
-  // res.send('Hello Express'); //string response
-  // res.sendFile('index.html'); // <- this don't work w/o imports, assign, and arguements
-  res.sendFile(join(__dirname, 'public', 'attend.html')) ;
->>>>>>> dev
-
 })
 
 app.get('/inject', (req, res) => {
