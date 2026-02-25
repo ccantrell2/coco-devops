@@ -20,12 +20,9 @@
   "homepage": "https://github.com/ccantrell2/coco-devops#readme",
   "dependencies": {
     "express": "^5.2.1",
-<<<<<<< HEAD
     "dotenv": "^17.2.3",
     "mongodb": "^7.1.0"
-=======
     "mongodb": "^7.1.0",
     "nodemon": "^3.1.11"
->>>>>>> dev
   }
 }
