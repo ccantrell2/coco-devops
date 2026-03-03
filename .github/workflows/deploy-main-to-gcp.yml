@@ -34,7 +34,7 @@ jobs:
           ssh -i ~/.ssh/id_rsa -T "$SSH_USER@$SSH_HOST" <<EOF
             set -e
 
-            sudo -u ccantrell2 -H bash -lc '
+            sudo -u ccantrell2 -H bash -lc
             cd /home/ccantrell2/coco-devops
 
             cd "$APP_DIR"
