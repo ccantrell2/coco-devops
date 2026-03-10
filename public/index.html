@@ -3,28 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIS 486 - Attendance Tracker</title>
+  <!-- Links to all required technology - source code: https://github.com/ccantrell2/devGeorgeProject/blob/main/index.html-->
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js'></script>
+  <title>LEGO App</title>
   <style>
+  /* Got this Background from here: https://css-pattern.com/ */
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Courier New", sans-serif;
+      margin: 0 auto;
+      padding: 0;
+      --s: 66px; 
+      --c1: #d11013;
+      --c2: #f6ec35;
+      --c3: #292d2e;
+  
+      --p:at 45% 40%,#0000 75%,;
+      --g1:conic-gradient(var(--p) var(--c1) 0);
+      --g2:conic-gradient(var(--p) var(--c2) 0);
+    background:
+      var(--g1),var(--g2) calc(2*var(--s)) 0,
+      var(--g2) calc(3*var(--s)) var(--s),
+      var(--g1) var(--s) var(--s) var(--c3);
+    background-size: calc(4*var(--s)) calc(2*var(--s));
+    }
+    .page {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #f5f5f5;
+      background-color: #000000;
     }
     .container {
-      background: white;
+      background: #DA291C;
       padding: 20px;
       border-radius: 8px;
       margin-bottom: 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     h1, h2 {
-      color: #333;
-    }
-    .class-info {
-      background: #e8f4fd;
-      border-left: 4px solid #2196F3;
+      color: #FFFFFF;
     }
     .form-group {
       margin-bottom: 15px;
@@ -42,7 +60,7 @@
       font-size: 16px;
     }
     button {
-      background: #2196F3;
+      background: #228B22;
       color: white;
       padding: 10px 20px;
       border: none;
@@ -55,16 +73,16 @@
       background: #1976D2;
     }
     .delete-btn {
-      background: #f44336;
+      background: #8B0000;
     }
     .delete-btn:hover {
-      background: #d32f2f;
+      background: #8B0000;
     }
     .edit-btn {
-      background: #ff9800;
+      background: #6699CC;
     }
     .edit-btn:hover {
-      background: #f57c00;
+      background: #6699CC;
     }
     .message {
       padding: 10px;
@@ -88,81 +106,169 @@
       border-radius: 4px;
       border: 1px solid #dee2e6;
     }
-    #attendanceList {
+    #currentList {
       max-height: 400px;
       overflow-y: auto;
     }
+    #wishlistList {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .form-row {
+    display: flex;
+    gap: 20px;
+    }
+    .currentBox {
+    flex: 1;
+    }
+    .wishlistBox {
+    flex: 1;
+    }
+    .currentProgress {
+    flex: 1;
+    }
+    .wishlistItem {
+    flex: 1;
+    }
+
   </style>
 </head>
 <body>
-  <!-- Class Information Section -->
-  <div class="container class-info">
-    <h1>Class Information</h1>
-    <div id="classInfo">Loading class information...</div>
+  <!-- Nav bar - source code: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="https://logos-world.net/wp-content/uploads/2020/09/LEGO-Logo.png" alt="legoLogo" width="70" height="40">
+    </a>
+    <a class="navbar-brand">LEGO App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Subscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Future Features</a>
+        </li>
+        </ul>
+    </div>
   </div>
+</nav>
 
-  <!-- Attendance Form -->
-  <div class="container">
-    <h2>Student Attendance</h2>
+<div class="page">
+  <!-- Learned about form-row here: https://getbootstrap.com/docs/4.0/components/forms/#form-grid -->
+  <div class="form-row">
+
+  <!-- Current Set Progress Form -->
+  <div class="container currentBox">
+    <h2>Current Set</h2>
     <div id="message"></div>
     
-    <form id="attendanceForm">
-      <div class="form-group">
-        <label for="studentName">Student Name:</label>
-        <input type="text" id="studentName" required>
-      </div>
-      
+    <form id="currentForm">
       <div class="form-group">
         <label for="date">Today's Date:</label>
-        <input type="text" id="date" required placeholder="February 3, 2026">
+        <input type="date" id="date" required>
       </div>
       
       <div class="form-group">
-        <label for="keyword">Keyword from Board:</label>
-        <input type="text" id="keyword" required>
+        <label for="Setname">Set Name:</label>
+        <input type="text" id="Setname" required>
       </div>
       
-      <button type="submit">Record Attendance</button>
-      <button type="button" onclick="loadAttendance()">Refresh List</button>
+      <div class="form-group">
+        <label for="BagNumber">Number of Bags:</label>
+        <input type="number" id="BagNumber" required>
+      </div>
+
+      <div class="form-group">
+        <label for="completed">Completed Bags:</label>
+        <input type="number" id="completed" required>
+      </div>
+      
+      <button type="submit" id="progressSubmit">Record Progress</button>
     </form>
   </div>
 
-  <!-- Attendance Records -->
-  <div class="container">
-    <h2>Attendance Records</h2>
-    <div id="attendanceList">Loading attendance records...</div>
+  <!-- LEGO Set Wishlist Form -->
+  <div class="container wishlistBox">
+    <h2>LEGO Wishlist</h2>
+    <div id="wishMessage"></div>
+
+    <form id="wishlistForm">
+    <div class="form-group">
+        <label for="SetWish">Set Name:</label>
+        <input type="text" id="SetWish" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="theme">Theme:</label>
+        <input type="text" id="theme" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="pieces">Number of Pieces:</label>
+        <input type="number" id="pieces" required>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" step="0.01" required>
+      </div>
+      
+      <button type="submit" id="wishSubmit">Add to Wishlist</button>
+    </form>
   </div>
+  </div>
+
+  <div class="form-row">
+
+  <!-- Current Set Progress Records -->
+  <div class="container currentProgress">
+    <h2>Current Set Progress</h2>
+    <div id="currentList">Loading progress history</div>
+  </div>
+
+
+  <!-- Wishlist Records -->
+  <div class="container wishlistItem">
+    <h2>Current Wishlist</h2>
+    <div id="wishlistList">Loading wishlist</div>
+  </div>
+  </div>
+</div>
+
+   <!-- Footer - source code: https://github.com/ccantrell2/devGeorgeProject/blob/main/index.html -->
+  <footer class="bg-dark text-light py-3">
+    <div class="col-md-4 d-flex align-items-center" id="footLinks">
+      <ol>
+      <span class="text">&copy; Cohen Cantrell</span>
+      <span class="text"></span>
+        <a href="https://github.com/ccantrell2/coco-devops" class="footer-link" target="_blank">Source</a>
+        <a href="https://wave.webaim.org/report#/https://ccantrell2.github.io/dev-charlie-project/" class="footer-link" target="_blank">WAVE</a>
+    </ol>
+    </div>  
+  </footer>
 
   <script>
     let editingId = null;
+    let editingIdWish = null;
 
-    // Load class information on page load
-    async function loadClassInfo() {
-      try {
-        const response = await fetch('/api/class');
-        const classData = await response.json();
-        
-        document.getElementById('classInfo').innerHTML = `
-          <h3>${classData.courseNumber} - ${classData.courseName}</h3>
-          <p><strong>Nickname:</strong> ${classData.nickname}</p>
-          <p><strong>Semester:</strong> ${classData.semester}</p>
-          <p><strong>Calendar:</strong> ${classData.calendar}</p>
-        `;
-      } catch (error) {
-        document.getElementById('classInfo').innerHTML = 'Error loading class information';
-      }
-    }
-
-    // Handle form submission
-    document.getElementById('attendanceForm').addEventListener('submit', async (e) => {
+    // Handle form submission (Current Set Progress)
+    document.getElementById('currentForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const studentName = document.getElementById('studentName').value;
       const date = document.getElementById('date').value;
-      const keyword = document.getElementById('keyword').value;
+      const Setname = document.getElementById('Setname').value;
+      const BagNumber = Number(document.getElementById('BagNumber').value);
+      const completed = Number(document.getElementById('completed').value);
 
       try {
-        const url = editingId ? `/api/attendance/${editingId}` : '/api/attendance';
+        const url = editingId ? `/api/current/${editingId}` : '/api/current';
         const method = editingId ? 'PUT' : 'POST';
         
         const response = await fetch(url, {
@@ -171,9 +277,10 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            studentName,
             date,
-            keyword
+            Setname,
+            BagNumber,
+            completed
           })
         });
 
@@ -181,12 +288,12 @@
         
         if (response.ok) {
           showMessage(result.message, 'success');
-          document.getElementById('attendanceForm').reset();
+          document.getElementById('currentForm').reset();
           if (editingId) {
             editingId = null;
-            document.querySelector('button[type="submit"]').textContent = 'Record Attendance';
+            document.getElementById('progressSubmit').textContent = 'Record Progress';
           }
-          loadAttendance();
+          loadProgress();
         } else {
           showMessage(result.error, 'error');
         }
@@ -195,48 +302,50 @@
       }
     });
 
-    // Load attendance records
-    async function loadAttendance() {
+    // Load Progress records (Current Set Progress)
+    async function loadProgress() {
       try {
-        const response = await fetch('/api/attendance');
+        const response = await fetch('/api/current');
         const records = await response.json();
         
-        const listDiv = document.getElementById('attendanceList');
+        const listDiv = document.getElementById('currentList');
         
         if (records.length === 0) {
-          listDiv.innerHTML = '<p>No attendance records yet.</p>';
+          listDiv.innerHTML = '<p>No current progress records yet.</p>';
           return;
         }
 
         listDiv.innerHTML = records.map(record => `
           <div class="record">
-            <strong>${record.studentName}</strong> - ${record.date}<br>
-            <small>Keyword: ${record.keyword} | Recorded: ${new Date(record.timestamp).toLocaleString()}</small><br>
-            <button class="edit-btn" onclick="editRecord('${record._id}', '${record.studentName}', '${record.date}', '${record.keyword}')">Edit</button>
-            <button class="delete-btn" onclick="deleteRecord('${record._id}')">Delete</button>
+            <strong>${record.Setname}</strong><br>
+            <strong>${record.completed}</strong> out of <strong>${record.BagNumber}</strong> bags done</small><br>
+            <small>${record.date}</small><br>
+            <button class="edit-btn" onclick="editProgressRecord('${record._id}', '${record.date}', '${record.Setname}', '${record.BagNumber}', '${record.completed}')">Edit</button>
+            <button class="delete-btn" onclick="deleteProgressRecord('${record._id}')">Delete</button>
           </div>
         `).join('');
       } catch (error) {
-        document.getElementById('attendanceList').innerHTML = 'Error loading attendance records';
+        document.getElementById('currentList').innerHTML = 'Error loading progress history';
       }
     }
 
-    // Edit record
-    function editRecord(id, studentName, date, keyword) {
+    // Edit record (Current Set Progress)
+    function editProgressRecord(id, date, Setname, BagNumber, completed) {
       editingId = id;
-      document.getElementById('studentName').value = studentName;
       document.getElementById('date').value = date;
-      document.getElementById('keyword').value = keyword;
-      document.querySelector('button[type="submit"]').textContent = 'Update Attendance';
+      document.getElementById('Setname').value = Setname;
+      document.getElementById('BagNumber').value = BagNumber;
+      document.getElementById('completed').value = completed;
+      document.getElementById('progressSubmit').textContent = 'Update Progress';
       showMessage('Editing record - click Update to save changes', 'success');
     }
 
-    // Delete record
-    async function deleteRecord(id) {
+    // Delete record (Current Set Progress)
+    async function deleteProgressRecord(id) {
       if (!confirm('Are you sure you want to delete this record?')) return;
       
       try {
-        const response = await fetch(`/api/attendance/${id}`, {
+        const response = await fetch(`/api/current/${id}`, {
           method: 'DELETE'
         });
 
@@ -244,7 +353,7 @@
         
         if (response.ok) {
           showMessage(result.message, 'success');
-          loadAttendance();
+          loadProgress();
         } else {
           showMessage(result.error, 'error');
         }
@@ -253,7 +362,7 @@
       }
     }
 
-    // Show message
+    // Show message (Current Set Progress)
     function showMessage(text, type) {
       const messageDiv = document.getElementById('message');
       messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
@@ -262,12 +371,124 @@
       }, 3000);
     }
 
-    // Initialize page
-    loadClassInfo();
-    loadAttendance();
+    // Handle form submission (Wishlist)
+    document.getElementById('wishlistForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const SetWish = document.getElementById('SetWish').value;
+      const theme = document.getElementById('theme').value;
+      const pieces = Number(document.getElementById('pieces').value);
+      const price = Number(document.getElementById('price').value);
 
-    // Set today's date as default
-    document.getElementById('date').value = 'February 3, 2026';
+      try {
+        const url = editingIdWish ? `/api/wishlist/${editingIdWish}` : '/api/wishlist';
+        const method = editingIdWish ? 'PUT' : 'POST';
+        
+        const response = await fetch(url, {
+          method: method,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            SetWish,
+            theme,
+            pieces,
+            price
+          })
+        });
+
+        const result = await response.json();
+        
+        if (response.ok) {
+          showWishMessage(result.message, 'success');
+          document.getElementById('wishlistForm').reset();
+          if (editingIdWish) {
+            editingIdWish = null;
+            document.getElementById('wishSubmit').textContent = 'Add to List';
+          }
+          loadWishlist();
+        } else {
+          showWishMessage(result.error, 'error');
+        }
+      } catch (error) {
+        showWishMessage('Error submitting form', 'error');
+      }
+    });
+
+    // Load Wishlist records (Wishlist)
+    async function loadWishlist() {
+      try {
+        const response = await fetch('/api/wishlist');
+        const records = await response.json();
+        
+        const listDiv = document.getElementById('wishlistList');
+        
+        if (records.length === 0) {
+          listDiv.innerHTML = '<p>No wishlist records yet.</p>';
+          return;
+        }
+
+        listDiv.innerHTML = records.map(record => `
+          <div class="record">
+            <strong>${record.SetWish}</strong><br>
+            <strong>Theme:</strong> ${record.theme}<br>
+            <strong>Pieces:</strong> ${record.pieces}<br>
+            <strong>Price:</strong> ${record.price}<br>
+            <button class="edit-btn" onclick="editWishRecord('${record._id}', '${record.SetWish}', '${record.theme}', '${record.pieces}', '${record.price}')">Edit</button>
+            <button class="delete-btn" onclick="deleteWishRecord('${record._id}')">Delete</button>
+          </div>
+        `).join('');
+      } catch (error) {
+        document.getElementById('wishlistList').innerHTML = 'Error loading wishlist records';
+      }
+    }
+
+    // Edit record (Wishlist)
+    function editWishRecord(id, SetWish, theme, pieces, price) {
+      editingIdWish = id;
+      document.getElementById('SetWish').value = SetWish;
+      document.getElementById('theme').value = theme;
+      document.getElementById('pieces').value = pieces;
+      document.getElementById('price').value = price;
+      document.getElementById('wishSubmit').textContent = 'Update Wishlist';
+      showWishMessage('Editing record - click Update to save changes', 'success');
+    }
+
+    // Delete record (Wishlist)
+    async function deleteWishRecord(id) {
+      if (!confirm('Are you sure you want to delete this record?')) return;
+      
+      try {
+        const response = await fetch(`/api/wishlist/${id}`, {
+          method: 'DELETE'
+        });
+
+        const result = await response.json();
+        
+        if (response.ok) {
+          showWishMessage(result.message, 'success');
+          loadWishlist();
+        } else {
+          showWishMessage(result.error, 'error');
+        }
+      } catch (error) {
+        showWishMessage('Error deleting wishlist record', 'error');
+      }
+    }
+
+    // Show message (Wishlist)
+    function showWishMessage(text, type) {
+      const messageDiv = document.getElementById('wishMessage');
+      messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+      setTimeout(() => {
+        messageDiv.innerHTML = '';
+      }, 3000);
+    }
+
+    // Initialize page
+    loadProgress();
+    loadWishlist();
+
   </script>
 </body>
 </html>

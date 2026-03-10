@@ -2,7 +2,7 @@ name: deploy-main-to-gcp.yml
 
 on:
   push:
-    branches: [dev]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -13,13 +13,14 @@ jobs:
       - name: Prepare SSH
         shell: bash
         run: |
+          set -e
+
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-          # safer than StrictHostKeyChecking=no
           ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
@@ -28,19 +29,19 @@ jobs:
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
-          APP_DIR:  ${{ vars.APP_DIR }}
-          PM2_NAME: ${{ vars.PM2_NAME }}
+          APP_DIR: /home/ccantrell2/coco-devops
+          PM2_NAME: app
         run: |
-          ssh -i ~/.ssh/id_rsa -tt "$SSH_USER@$SSH_HOST" <<EOF
+          ssh -i ~/.ssh/id_rsa -T "$SSH_USER@$SSH_HOST" <<EOF
             set -e
+            sudo -u ccantrell2 -H bash -lc '
+              cd "$APP_DIR"
+              git reset --hard
+              git pull
+              npm ci
 
-            cd "$APP_DIR"
-
-            git pull
-            npm ci
-
-            pm2 delete "$PM2_NAME" || true
-            pm2 start -f app.js --name "$PM2_NAME"
-
-            pm2 save
+              pm2 delete "$PM2_NAME" || true
+              pm2 start -f app.js --name "$PM2_NAME"
+              pm2 save
+            '
           EOF
