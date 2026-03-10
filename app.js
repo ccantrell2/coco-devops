@@ -37,7 +37,7 @@ async function run() {
     console.error("Error connecting to MongoDB:", error);
   }
 }
-connectToMongo();
+run();
 
 
 app.get('/', (req, res) => {
