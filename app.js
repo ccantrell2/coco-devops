@@ -14,6 +14,7 @@ const myVar = 'Injected from server';
 app.use(express.static(join(__dirname, 'public')));
 app.use(express.json());
 
+// Creates new Mongo Client
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -22,6 +23,7 @@ const client = new MongoClient(uri, {
   }
 });
 
+// Connects to MongoDB
 async function run() {
   try {
     await client.connect();
@@ -72,7 +74,7 @@ app.post('/api/current', async (req, res) => {
 });
 
 // READ (Current Progress)
-// Source Code: app2.js from class
+// Source Code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/find/
 app.get('/api/current', async (req, res) => {
   try {
     const db = client.db('cis486');
@@ -84,7 +86,7 @@ app.get('/api/current', async (req, res) => {
 });
 
 // UPDATE (Current Progress)
-// source code: app2.js from class and
+// source code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/update/#update-a-single-document-by-id
 app.put('/api/current/:id', async (req, res) => {
   try {
     const db = client.db('cis486'); 
@@ -120,6 +122,7 @@ app.put('/api/current/:id', async (req, res) => {
 });
 
 // DELETE (Current Progress)
+// Source Code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/delete/#delete-a-single-document-by-id
 app.delete('/api/current/:id', async (req, res) => {
   try {
     const db = client.db('cis486');
@@ -146,7 +149,6 @@ app.delete('/api/current/:id', async (req, res) => {
 });
 
 // CREATE (Wishlist)
-// Source Code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/insert/
 app.post('/api/wishlist', async (req, res) => {
   try {
     const { SetWish, theme, pieces, price } = req.body;
@@ -178,7 +180,6 @@ app.post('/api/wishlist', async (req, res) => {
 });
 
 // READ (Wishlist)
-// Source Code: app2.js from class
 app.get('/api/wishlist', async (req, res) => {
   try {
     const db = client.db('cis486');
@@ -190,7 +191,6 @@ app.get('/api/wishlist', async (req, res) => {
 });
 
 // UPDATE (Wishlist)
-// source code: app2.js from class and
 app.put('/api/wishlist/:id', async (req, res) => {
   try {
     const db = client.db('cis486');
