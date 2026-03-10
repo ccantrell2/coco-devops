@@ -1,15 +1,19 @@
-import 'dotenv/config';
-import express from 'express'
+//app.mjs
+//we are in ES6, use this. 
+import 'dotenv/config'; 
+import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { readFile } from 'fs/promises';
 import { MongoClient , ServerApiVersion, ObjectId} from 'mongodb';
 
-const app = express()
+
+const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const uri = process.env.MONGO_URI; 
-const myVar = 'Injected from server';
+const uri = process.env.MONGO_URI;  
+const myVar = 'injected from server'; // Declare your variable
+
 
 app.use(express.static(join(__dirname, 'public')));
 app.use(express.json());
@@ -33,7 +37,8 @@ async function run() {
     console.error("Error connecting to MongoDB:", error);
   }
 }
-run().catch(console.dir);
+connectToMongo();
+
 
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'public', 'index.html'))
