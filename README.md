@@ -5,7 +5,7 @@
 - This app allows you to track the current and future aspects of your LEGO sets. It alllows the user to keep track of thier current progress with the set and create a wishlist of future sets they want to add to thier collection. Good luck and enjoy!
 
 ## Target Users
-- 
+- This app can be used by anyone involved with lego building. If you are currently an active collector or juts buy a set here and tere, this app wllows you to trak your progress of any set at any time. This app can be used for all ages, and its easy to understand user interface allows anyone, tech savy or not, to undersatnd and use it.
 
 ## Features
 - 
