@@ -8,7 +8,13 @@
 - This app can be used by anyone involved with lego building. If you are currently an active collector or juts buy a set here and tere, this app wllows you to trak your progress of any set at any time. This app can be used for all ages, and its easy to understand user interface allows anyone, tech savy or not, to undersatnd and use it.
 
 ## Features
-- 
+- Search Fetures
+- Login System
+- Database Connection
+- Easy navaigation
+- Input fields
+- Consistent layout design
+- Advanced Architecture
 ## Tech Stack
 - node.js
 - express.js
