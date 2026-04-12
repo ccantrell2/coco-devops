@@ -1,4 +1,4 @@
-//app.mjs
+
 //we are in ES6, use this. 
 import 'dotenv/config'; 
 import express from 'express';
@@ -37,7 +37,7 @@ async function run() {
     console.error("Error connecting to MongoDB:", error);
   }
 }
-connectToMongo();
+run();
 
 
 app.get('/', (req, res) => {
