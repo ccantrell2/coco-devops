@@ -130,13 +130,15 @@
     .wishlistItem {
     flex: 1;
     }
-    #navbarSupportedContent input[type=text]{
-      float: right;
-      padding: 6px;
-      border: none;
-      margin-top: 8px;
-      margin-right: 16px;
-      font-size: 17px;
+    #searchBar {
+      margin-left: auto;
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
     }
 
   </style>
@@ -163,10 +165,10 @@
         <li class="nav-item">
           <a class="nav-link">Future Features</a>
         </li>
-        <li class="input" >
-          <input id="searchBar" type="text" name="search" placeholder="Search Entries">
-        </li>
         </ul>
+        <form class="d-flex ms-auto">
+          <input class="form-control" type="search" placeholder="Search Entries">
+        </form>
     </div>
   </div>
 </nav>
