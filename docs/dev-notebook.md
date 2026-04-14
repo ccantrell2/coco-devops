@@ -11,6 +11,7 @@
   - I created a docs folder for my dev notebook becuase I wanted to be able to have my notebook on my main branch of my github repo. It seemed easier that way instead of using pages or a wiki.
 - Started on putting a search function in my app
   - <a href="https://github.com/ccantrell2/coco-devops/commit/aa19cee7c57c676ce96d3bbd423af38425a3e44d" target="_blank">Added search bar attempt commit</a>
+    
   -**Problem:** Search bar did not appear when push was commited
   - I attempted to add a search bar that can filter through the database entries on both sections dynamically. When editing in VScode I was able to get the seacrh bar to appear, but when I pushed the new code to my repo, the search bar did not appear in the app. I checked and the push went fine and the new code was in both index and js files. I will try to figure out this issue tommorow.
 
