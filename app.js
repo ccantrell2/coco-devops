@@ -1,4 +1,4 @@
-//app.mjs
+
 //we are in ES6, use this. 
 import 'dotenv/config'; 
 import express from 'express';
