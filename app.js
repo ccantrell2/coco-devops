@@ -56,7 +56,7 @@ app.post('/api/current', async (req, res) => {
       return res.status(400).json({ error: 'Date, Name of set, Current and overall bag number are required' });
     }
 
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const collection = db.collection('current');
 
     const currentProgress = {
@@ -82,7 +82,7 @@ app.post('/api/current', async (req, res) => {
 // Source Code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/find/
 app.get('/api/current', async (req, res) => {
   try {
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const currentProgress = await db.collection('current').find({}).toArray();
     res.json(currentProgress); 
   } catch (error) {
@@ -94,7 +94,7 @@ app.get('/api/current', async (req, res) => {
 // source code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/update/#update-a-single-document-by-id
 app.put('/api/current/:id', async (req, res) => {
   try {
-    const db = client.db('cis486'); 
+    const db = client.db('legoList');
     const { id } = req.params;
     const { date, Setname, BagNumber, completed } = req.body;
 
@@ -130,7 +130,7 @@ app.put('/api/current/:id', async (req, res) => {
 // Source Code: app2.js from class and https://www.mongodb.com/docs/drivers/node/current/crud/delete/#delete-a-single-document-by-id
 app.delete('/api/current/:id', async (req, res) => {
   try {
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const { id } = req.params;
 
     // Validate ObjectId
@@ -163,7 +163,7 @@ app.post('/api/wishlist', async (req, res) => {
       return res.status(400).json({ error: 'Set Name, Theme, Number of Pieces, and Price are required' });
     }
 
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const collection = db.collection('wishlist');
 
     const wishlistItem = {
@@ -187,7 +187,7 @@ app.post('/api/wishlist', async (req, res) => {
 // READ (Wishlist)
 app.get('/api/wishlist', async (req, res) => {
   try {
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const wishlistItems = await db.collection('wishlist').find({}).toArray();
     res.json(wishlistItems);
   } catch (error) {
@@ -198,7 +198,7 @@ app.get('/api/wishlist', async (req, res) => {
 // UPDATE (Wishlist)
 app.put('/api/wishlist/:id', async (req, res) => {
   try {
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const { id } = req.params;
     const { SetWish, theme, pieces, price } = req.body;
 
@@ -233,7 +233,7 @@ app.put('/api/wishlist/:id', async (req, res) => {
 // DELETE (Wishlist)
 app.delete('/api/wishlist/:id', async (req, res) => {
   try {
-    const db = client.db('cis486');
+    const db = client.db('legoList');
     const { id } = req.params;
 
     // Validate ObjectId
