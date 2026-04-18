@@ -1,0 +1,10 @@
+# Debug Case Study
+
+## What Broke?
+ - When I develop the code and features to my app, I do so locally on my machine via Visual Studio Code. Once I am done with my editing session, I commence a git add, git commit, and git push to the main branch of my Github Repository (coco-devops). Throughout the time devolping my LEGO App using these git commands, it usually worked with minimal to no problem. Yet, when I attempted to add my search feature via a git push to my main branch, my search bar did not appear in my app via the URL, even though the search bar appeared when I ran my app on my local machine. Even though my code passed through the workflow correctly and the updated search code was in my index and app files, the URL did not display this.
+
+## Why?
+ - I spent a good amount of time trying to figure out why this issue was happeing. After much research and getting help from my college class time, I was able to figure out the issue. The reason why my new code was not appearing via thre URL was because I was pushing too many time to the main branch. Since I committed too many pushes to the main branch, it was flooding my Google Could virtual machine. Since my VM was flooded, it was stalling the update of my new code to my URL, which was connected to my Google Cloud VM.
+
+## How Did I Fix It?
+ - To fix this issue, I simply switch to my dev branch on my local machine, edit my code, and them commit the git push to my dev branch. Since this branch is not connected to my VM, it will not stall my VM. When I commit the code to my dev branch, I can check if my new code works on the web using Render. I can commit as many git psuhes to my dev branch as I need and I will just merge my dev branch into my main branch once a week, so the new code will appear in the main branch with one simple action. This allowed my new features to appear on my URL.
