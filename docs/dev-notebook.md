@@ -14,4 +14,15 @@
   - **Problem:** Search bar did not appear when push was commited
   - I attempted to add a search bar that can filter through the database entries on both sections dynamically. When editing in VScode I was able to get the seacrh bar to appear, but when I pushed the new code to my repo, the search bar did not appear in the app. I checked and the push went fine and the new code was in both index and js files. I will try to figure out this issue tommorow.
 
-## April 13th. 2026
+## April 14th, 2026
+- Fixed Issue with Main Branch Code
+  - <a href="https://github.com/ccantrell2/coco-devops/issues/9" target="_blank">Main branch problem Issue</a>
+  - Today, I believe that I have figured out the problem that has been plauging me for the past couple of days. I went to class and with Dr. Cumbies help, we figured out that the reason that my main branch code isn't working is becuase I am commiting to many times to the Main branch. To remedy this issue, I will not commit to the dev branch and commit a merge to the main once a week. This will prevent the GCP VM from getting too loaded at once.
+
+## April 17th, 2026
+- Connected my LEGO App to my own MongoDB Atlas Database **(+ 10 pts)**
+  - <a href="https://github.com/ccantrell2/coco-devops/commit/68a4c7dcfb8173345b4c299c07fcb8d60fb07e12" target="_blank">Connect to my own databse commit</a>
+  - I successfully connected my app to my own personal databse. I created my own account on Mongo Atlas, created a new project and cluster, made a new database name, and entered the correct IP addresses. In the past my app was running on a class database that many fellow classmates were using as well, so I decided to create my own database becuase it will allow me to be able to use this app after I graduate and in the future.
+- Created and Completed my Debug Case Study
+  - <a href="https://github.com/ccantrell2/coco-devops/commit/83b0db20bdd9be82b2360628f3d0e0bbab65451e" target="_blank">Debug Case Study commit</a>
+  - I created a debug case study for my app based on the issue I had on April 14th with my pushed code to my main branch not appearing in my website URL. In my case study I detailed what broke, why it broke, and how i fixed it. I decided to do a debug case study on my app beccause I can see this problem arising again in the future and having a document detailing it can come in handy.
