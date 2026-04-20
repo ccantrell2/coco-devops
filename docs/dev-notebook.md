@@ -21,8 +21,17 @@
 
 ## April 17th, 2026
 - Connected my LEGO App to my own MongoDB Atlas Database **(+ 10 pts)**
-  - <a href="https://github.com/ccantrell2/coco-devops/commit/68a4c7dcfb8173345b4c299c07fcb8d60fb07e12" target="_blank">Connect to my own databse commit</a>
+  - <a href="https://github.com/ccantrell2/coco-devops/commit/68a4c7dcfb8173345b4c299c07fcb8d60fb07e12" target="_blank">Connect to my own database commit</a>
   - I successfully connected my app to my own personal databse. I created my own account on Mongo Atlas, created a new project and cluster, made a new database name, and entered the correct IP addresses. In the past my app was running on a class database that many fellow classmates were using as well, so I decided to create my own database becuase it will allow me to be able to use this app after I graduate and in the future.
-- Created and Completed my Debug Case Study
+- Created and Completed my Debug Case Study **(+ 10 pts)**
   - <a href="https://github.com/ccantrell2/coco-devops/commit/83b0db20bdd9be82b2360628f3d0e0bbab65451e" target="_blank">Debug Case Study commit</a>
   - I created a debug case study for my app based on the issue I had on April 14th with my pushed code to my main branch not appearing in my website URL. In my case study I detailed what broke, why it broke, and how i fixed it. I decided to do a debug case study on my app beccause I can see this problem arising again in the future and having a document detailing it can come in handy.
+
+## April 19th, 2026
+- Created my Issues and Milestones
+ - <a href="https://github.com/ccantrell2/coco-devops/milestones" target="_blank">Milestones</a>
+ - <a href="https://github.com/ccantrell2/coco-devops/issues" target="_blank">Issues</a>
+ - I created my milestones and published issues within those milestones. Each Milestone corresponds woth a box I selected for my final project. When I complete each box, I will close each milestone to signify the box being complete. I chose to do this becuase it seems like the easiet way to present new code changes and md files during my class presentation.
+- Finished my Deployment Guide **(+ 10 pts)**
+ - <a href="https://github.com/ccantrell2/coco-devops/issues/12" target="_blank">Finished Deployment Guide Issue</a>
+ - 
