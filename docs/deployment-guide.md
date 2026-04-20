@@ -2,19 +2,19 @@
 
 ## Step-by-step GCP setup
 - 1. Create the Virtual Machine
- - Go to Google Cloud and login with your username and password
- - Create a projects folder and install **Compute Engine**
- - Go to **Compute Engine**
- - Click on **Create Instance**
-  - *Machine Configuration*
-   - **Name:** Name of the VM 
-   - **Region:** us-west3 (Salt Lake City)
-   - **Series:** N1
-   - **Machine Type:** Shared core (f1 micro)
-  - *Networking*
-   - Allow both HTTP/HTTPS traffic (under Firewall)
-   - **Network Interfaces:** External IPv4 address➡️Reserve a static external IP➡️Name: midterm-exam-devops-IP➡️Click Reserve
- - Click on **Create**
+  - Go to Google Cloud and login with your username and password
+  - Create a projects folder and install **Compute Engine**
+  - Go to **Compute Engine**
+  - Click on **Create Instance**
+    - *Machine Configuration*
+      - **Name:** Name of the VM 
+      - **Region:** us-west3 (Salt Lake City)
+    - **Series:** N1
+      - **Machine Type:** Shared core (f1 micro)
+    - *Networking*
+      - Allow both HTTP/HTTPS traffic (under Firewall)
+    - **Network Interfaces:** External IPv4 address➡️Reserve a static external IP➡️Name: midterm-exam-devops-IP➡️Click Reserve
+  - Click on **Create**
 - 2. SSH into the VM
  - From the SSH command prompt, enter these commands for your SSH keys:
   - Create a folder for your keys: ```mkdir .ssh```
