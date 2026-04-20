@@ -34,4 +34,4 @@
  - I created my milestones and published issues within those milestones. Each Milestone corresponds woth a box I selected for my final project. When I complete each box, I will close each milestone to signify the box being complete. I chose to do this becuase it seems like the easiet way to present new code changes and md files during my class presentation.
 - Finished my Deployment Guide **(+ 10 pts)**
  - <a href="https://github.com/ccantrell2/coco-devops/issues/12" target="_blank">Finished Deployment Guide Issue</a>
- - 
+ - I finished my deployment guide. In this deployment guide, I set up a complete step by step explanation of how to set up a VM to getting your app started on Pm2. I included the enviroment variables, commands, and the defintions of what pm2 and nginx are. I chose to do this becuase these step by step commands will be helpful if I wish to set up another app in the future or if I need to fix my current LEGO App.
