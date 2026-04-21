@@ -35,3 +35,8 @@
 - Finished my Deployment Guide **(+ 10 pts)**
   - <a href="https://github.com/ccantrell2/coco-devops/issues/12" target="_blank">Finished Deployment Guide Issue</a>
   - I finished my deployment guide. In this deployment guide, I set up a complete step by step explanation of how to set up a VM to getting your app started on Pm2. I included the enviroment variables, commands, and the defintions of what pm2 and nginx are. I chose to do this becuase these step by step commands will be helpful if I wish to set up another app in the future or if I need to fix my current LEGO App.
+
+## April 20th, 2026
+- Completed my Search Function **(+ 10 pts)**
+  - <a href="<a href=https://github.com/ccantrell2/coco-devops/issues/11" target="_blank">Finished Deployment Guide
+  - I finally completed my search function for my lego app. My new code stores the database entries in an array and filters through them dynamically so the search result appears on the page for the user. I chose to do this because a search feature allows me to get the exact entry I want for that time being.
