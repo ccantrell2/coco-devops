@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Links to all required technology - source code: https://github.com/ccantrell2/devGeorgeProject/blob/main/index.html-->
   <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js'></script>
   <title>LEGO App</title>
   <style>
-  /* Got this Background from here: https://css-pattern.com/ */
     body {
       font-family: "Courier New", sans-serif;
       margin: 0 auto;
       padding: 0;
-      --s: 66px; 
+      --s: 66px;
       --c1: #d11013;
       --c2: #f6ec35;
       --c3: #292d2e;
-  
-      --p:at 45% 40%,#0000 75%,;
-      --g1:conic-gradient(var(--p) var(--c1) 0);
-      --g2:conic-gradient(var(--p) var(--c2) 0);
-    background:
-      var(--g1),var(--g2) calc(2*var(--s)) 0,
-      var(--g2) calc(3*var(--s)) var(--s),
-      var(--g1) var(--s) var(--s) var(--c3);
-    background-size: calc(4*var(--s)) calc(2*var(--s));
+
+      --p: at 45% 40%, #0000 75%, ;
+      --g1: conic-gradient(var(--p) var(--c1) 0);
+      --g2: conic-gradient(var(--p) var(--c2) 0);
+      background:
+        var(--g1), var(--g2) calc(2*var(--s)) 0,
+        var(--g2) calc(3*var(--s)) var(--s),
+        var(--g1) var(--s) var(--s) var(--c3);
+      background-size: calc(4*var(--s)) calc(2*var(--s));
     }
+
     .page {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
       background-color: #000000;
     }
+
     .container {
       background: #DA291C;
       padding: 20px;
       border-radius: 8px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    h1, h2 {
+
+    h1,
+    h2 {
       color: #FFFFFF;
     }
+
     .form-group {
       margin-bottom: 15px;
     }
+
     label {
       display: block;
       margin-bottom: 5px;
       font-weight: bold;
     }
+
     input {
       width: 100%;
       padding: 8px;
@@ -59,6 +65,7 @@
       border-radius: 4px;
       font-size: 16px;
     }
+
     button {
       background: #228B22;
       color: white;
@@ -69,36 +76,45 @@
       font-size: 16px;
       margin-right: 10px;
     }
+
     button:hover {
       background: #1976D2;
     }
+
     .delete-btn {
       background: #8B0000;
     }
+
     .delete-btn:hover {
       background: #8B0000;
     }
+
     .edit-btn {
       background: #6699CC;
     }
+
     .edit-btn:hover {
       background: #6699CC;
     }
+
     .message {
       padding: 10px;
       margin: 10px 0;
       border-radius: 4px;
     }
+
     .success {
       background: #d4edda;
       color: #155724;
       border: 1px solid #c3e6cb;
     }
+
     .error {
       background: #f8d7da;
       color: #721c24;
       border: 1px solid #f5c6cb;
     }
+
     .record {
       background: #f8f9fa;
       padding: 10px;
@@ -106,176 +122,184 @@
       border-radius: 4px;
       border: 1px solid #dee2e6;
     }
+
     #currentList {
       max-height: 400px;
       overflow-y: auto;
     }
+
     #wishlistList {
       max-height: 400px;
       overflow-y: auto;
     }
+
     .form-row {
-    display: flex;
-    gap: 20px;
+      display: flex;
+      gap: 20px;
     }
+
     .currentBox {
-    flex: 1;
+      flex: 1;
     }
+
     .wishlistBox {
-    flex: 1;
+      flex: 1;
     }
+
     .currentProgress {
-    flex: 1;
+      flex: 1;
     }
+
     .wishlistItem {
-    flex: 1;
+      flex: 1;
     }
+
     #searchBar {
       margin-left: auto;
       padding: 5px;
       border-radius: 4px;
       border: 1px solid #ddd;
     }
+
     .navbar {
       display: flex;
       align-items: center;
     }
-
   </style>
 </head>
+
 <body>
-  <!-- Nav bar - source code: https://getbootstrap.com/docs/5.3/components/navbar/ -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand">
-      <img src="https://logos-world.net/wp-content/uploads/2020/09/LEGO-Logo.png" alt="legoLogo" width="70" height="40">
-    </a>
-    <a class="navbar-brand">LEGO App</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Subscription</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Future Features</a>
-        </li>
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img src="https://logos-world.net/wp-content/uploads/2020/09/LEGO-Logo.png" alt="legoLogo" width="70" height="40">
+      </a>
+      <a class="navbar-brand">LEGO App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Subscription</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Future Features</a>
+          </li>
         </ul>
         <form class="d-flex ms-auto">
-          <input class="form-control" type="search" placeholder="Search Entries">
+          <input id="searchBar" class="form-control" type="search" placeholder="Search Entries">
         </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="form-row">
+      <div class="container currentBox">
+        <h2>Current Set</h2>
+        <div id="message"></div>
+
+        <form id="currentForm">
+          <div class="form-group">
+            <label for="date">Today's Date:</label>
+            <input type="date" id="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="Setname">Set Name:</label>
+            <input type="text" id="Setname" required>
+          </div>
+
+          <div class="form-group">
+            <label for="BagNumber">Number of Bags:</label>
+            <input type="number" id="BagNumber" required>
+          </div>
+
+          <div class="form-group">
+            <label for="completed">Completed Bags:</label>
+            <input type="number" id="completed" required>
+          </div>
+
+          <button type="submit" id="progressSubmit">Record Progress</button>
+        </form>
+      </div>
+
+      <div class="container wishlistBox">
+        <h2>LEGO Wishlist</h2>
+        <div id="wishMessage"></div>
+
+        <form id="wishlistForm">
+          <div class="form-group">
+            <label for="SetWish">Set Name:</label>
+            <input type="text" id="SetWish" required>
+          </div>
+
+          <div class="form-group">
+            <label for="theme">Theme:</label>
+            <input type="text" id="theme" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pieces">Number of Pieces:</label>
+            <input type="number" id="pieces" required>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" step="0.01" required>
+          </div>
+
+          <button type="submit" id="wishSubmit">Add to Wishlist</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="container currentProgress">
+        <h2>Current Set Progress</h2>
+        <div id="currentList">Loading progress history</div>
+      </div>
+
+      <div class="container wishlistItem">
+        <h2>Current Wishlist</h2>
+        <div id="wishlistList">Loading wishlist</div>
+      </div>
     </div>
   </div>
-</nav>
 
-<div class="page">
-  <!-- Learned about form-row here: https://getbootstrap.com/docs/4.0/components/forms/#form-grid -->
-  <div class="form-row">
-
-  <!-- Current Set Progress Form -->
-  <div class="container currentBox">
-    <h2>Current Set</h2>
-    <div id="message"></div>
-    
-    <form id="currentForm">
-      <div class="form-group">
-        <label for="date">Today's Date:</label>
-        <input type="date" id="date" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="Setname">Set Name:</label>
-        <input type="text" id="Setname" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="BagNumber">Number of Bags:</label>
-        <input type="number" id="BagNumber" required>
-      </div>
-
-      <div class="form-group">
-        <label for="completed">Completed Bags:</label>
-        <input type="number" id="completed" required>
-      </div>
-      
-      <button type="submit" id="progressSubmit">Record Progress</button>
-    </form>
-  </div>
-
-  <!-- LEGO Set Wishlist Form -->
-  <div class="container wishlistBox">
-    <h2>LEGO Wishlist</h2>
-    <div id="wishMessage"></div>
-
-    <form id="wishlistForm">
-    <div class="form-group">
-        <label for="SetWish">Set Name:</label>
-        <input type="text" id="SetWish" required>
-      </div>
-    
-      <div class="form-group">
-        <label for="theme">Theme:</label>
-        <input type="text" id="theme" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="pieces">Number of Pieces:</label>
-        <input type="number" id="pieces" required>
-      </div>
-
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="number" id="price" step="0.01" required>
-      </div>
-      
-      <button type="submit" id="wishSubmit">Add to Wishlist</button>
-    </form>
-  </div>
-  </div>
-
-  <div class="form-row">
-
-  <!-- Current Set Progress Records -->
-  <div class="container currentProgress">
-    <h2>Current Set Progress</h2>
-    <div id="currentList">Loading progress history</div>
-  </div>
-
-
-  <!-- Wishlist Records -->
-  <div class="container wishlistItem">
-    <h2>Current Wishlist</h2>
-    <div id="wishlistList">Loading wishlist</div>
-  </div>
-  </div>
-</div>
-
-   <!-- Footer - source code: https://github.com/ccantrell2/devGeorgeProject/blob/main/index.html -->
   <footer class="bg-dark text-light py-3">
     <div class="col-md-4 d-flex align-items-center" id="footLinks">
       <ol>
-      <span class="text">&copy; Cohen Cantrell</span>
-      <span class="text"></span>
+        <span class="text">&copy; Cohen Cantrell</span>
+        <span class="text"></span>
         <a href="https://github.com/ccantrell2/coco-devops" class="footer-link" target="_blank">Source</a>
         <a href="https://wave.webaim.org/report#/https://legodevops.barrycumbie.com/" class="footer-link" target="_blank">WAVE</a>
         <a href="https://github.com/ccantrell2/coco-devops" class="footer-link" target="_blank">Validator</a>
-    </ol>
-    </div>  
+      </ol>
+    </div>
   </footer>
 
   <script>
     let editingId = null;
     let editingIdWish = null;
 
-    // Handle form submission (Current Set Progress)
+    let currentProgressRecords = [];
+    let wishlistRecords = [];
+
+    document.getElementById('searchBar').addEventListener('input', (e) => {
+      const searchText = e.target.value.toLowerCase().trim();
+      renderProgress(searchText);
+      renderWishlist(searchText);
+    });
+
     document.getElementById('currentForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const date = document.getElementById('date').value;
       const Setname = document.getElementById('Setname').value;
       const BagNumber = Number(document.getElementById('BagNumber').value);
@@ -284,7 +308,7 @@
       try {
         const url = editingId ? `/api/current/${editingId}` : '/api/current';
         const method = editingId ? 'PUT' : 'POST';
-        
+
         const response = await fetch(url, {
           method: method,
           headers: {
@@ -299,7 +323,7 @@
         });
 
         const result = await response.json();
-        
+
         if (response.ok) {
           showMessage(result.message, 'success');
           document.getElementById('currentForm').reset();
@@ -316,34 +340,43 @@
       }
     });
 
-    // Load Progress records (Current Set Progress)
     async function loadProgress() {
       try {
         const response = await fetch('/api/current');
         const records = await response.json();
-        
-        const listDiv = document.getElementById('currentList');
-        
-        if (records.length === 0) {
-          listDiv.innerHTML = '<p>No current progress records yet.</p>';
-          return;
-        }
-
-        listDiv.innerHTML = records.map(record => `
-          <div class="record">
-            <strong>${record.Setname}</strong><br>
-            <strong>${record.completed}</strong> out of <strong>${record.BagNumber}</strong> bags done</small><br>
-            <small>${record.date}</small><br>
-            <button class="edit-btn" onclick="editProgressRecord('${record._id}', '${record.date}', '${record.Setname}', '${record.BagNumber}', '${record.completed}')">Edit</button>
-            <button class="delete-btn" onclick="deleteProgressRecord('${record._id}')">Delete</button>
-          </div>
-        `).join('');
+        currentProgressRecords = records;
+        renderProgress(document.getElementById('searchBar').value.toLowerCase().trim());
       } catch (error) {
         document.getElementById('currentList').innerHTML = 'Error loading progress history';
       }
     }
 
-    // Edit record (Current Set Progress)
+    function renderProgress(searchText = '') {
+      const listDiv = document.getElementById('currentList');
+
+      const filteredRecords = currentProgressRecords.filter(record =>
+        record.Setname.toLowerCase().includes(searchText) ||
+        record.date.toLowerCase().includes(searchText) ||
+        String(record.BagNumber).includes(searchText) ||
+        String(record.completed).includes(searchText)
+      );
+
+      if (filteredRecords.length === 0) {
+        listDiv.innerHTML = '<p>No matching progress records found.</p>';
+        return;
+      }
+
+      listDiv.innerHTML = filteredRecords.map(record => `
+        <div class="record">
+          <strong>${record.Setname}</strong><br>
+          <strong>${record.completed}</strong> out of <strong>${record.BagNumber}</strong> bags done<br>
+          <small>${record.date}</small><br>
+          <button class="edit-btn" onclick="editProgressRecord('${record._id}', '${record.date}', '${record.Setname}', '${record.BagNumber}', '${record.completed}')">Edit</button>
+          <button class="delete-btn" onclick="deleteProgressRecord('${record._id}')">Delete</button>
+        </div>
+      `).join('');
+    }
+
     function editProgressRecord(id, date, Setname, BagNumber, completed) {
       editingId = id;
       document.getElementById('date').value = date;
@@ -354,17 +387,16 @@
       showMessage('Editing record - click Update to save changes', 'success');
     }
 
-    // Delete record (Current Set Progress)
     async function deleteProgressRecord(id) {
       if (!confirm('Are you sure you want to delete this record?')) return;
-      
+
       try {
         const response = await fetch(`/api/current/${id}`, {
           method: 'DELETE'
         });
 
         const result = await response.json();
-        
+
         if (response.ok) {
           showMessage(result.message, 'success');
           loadProgress();
@@ -376,7 +408,6 @@
       }
     }
 
-    // Show message (Current Set Progress)
     function showMessage(text, type) {
       const messageDiv = document.getElementById('message');
       messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
@@ -385,10 +416,9 @@
       }, 3000);
     }
 
-    // Handle form submission (Wishlist)
     document.getElementById('wishlistForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const SetWish = document.getElementById('SetWish').value;
       const theme = document.getElementById('theme').value;
       const pieces = Number(document.getElementById('pieces').value);
@@ -397,7 +427,7 @@
       try {
         const url = editingIdWish ? `/api/wishlist/${editingIdWish}` : '/api/wishlist';
         const method = editingIdWish ? 'PUT' : 'POST';
-        
+
         const response = await fetch(url, {
           method: method,
           headers: {
@@ -412,13 +442,13 @@
         });
 
         const result = await response.json();
-        
+
         if (response.ok) {
           showWishMessage(result.message, 'success');
           document.getElementById('wishlistForm').reset();
           if (editingIdWish) {
             editingIdWish = null;
-            document.getElementById('wishSubmit').textContent = 'Add to List';
+            document.getElementById('wishSubmit').textContent = 'Add to Wishlist';
           }
           loadWishlist();
         } else {
@@ -429,35 +459,44 @@
       }
     });
 
-    // Load Wishlist records (Wishlist)
     async function loadWishlist() {
       try {
         const response = await fetch('/api/wishlist');
         const records = await response.json();
-        
-        const listDiv = document.getElementById('wishlistList');
-        
-        if (records.length === 0) {
-          listDiv.innerHTML = '<p>No wishlist records yet.</p>';
-          return;
-        }
-
-        listDiv.innerHTML = records.map(record => `
-          <div class="record">
-            <strong>${record.SetWish}</strong><br>
-            <strong>Theme:</strong> ${record.theme}<br>
-            <strong>Pieces:</strong> ${record.pieces}<br>
-            <strong>Price:</strong> ${record.price}<br>
-            <button class="edit-btn" onclick="editWishRecord('${record._id}', '${record.SetWish}', '${record.theme}', '${record.pieces}', '${record.price}')">Edit</button>
-            <button class="delete-btn" onclick="deleteWishRecord('${record._id}')">Delete</button>
-          </div>
-        `).join('');
+        wishlistRecords = records;
+        renderWishlist(document.getElementById('searchBar').value.toLowerCase().trim());
       } catch (error) {
         document.getElementById('wishlistList').innerHTML = 'Error loading wishlist records';
       }
     }
 
-    // Edit record (Wishlist)
+    function renderWishlist(searchText = '') {
+      const listDiv = document.getElementById('wishlistList');
+
+      const filteredRecords = wishlistRecords.filter(record =>
+        record.SetWish.toLowerCase().includes(searchText) ||
+        record.theme.toLowerCase().includes(searchText) ||
+        String(record.pieces).includes(searchText) ||
+        String(record.price).includes(searchText)
+      );
+
+      if (filteredRecords.length === 0) {
+        listDiv.innerHTML = '<p>No matching wishlist records found.</p>';
+        return;
+      }
+
+      listDiv.innerHTML = filteredRecords.map(record => `
+        <div class="record">
+          <strong>${record.SetWish}</strong><br>
+          <strong>Theme:</strong> ${record.theme}<br>
+          <strong>Pieces:</strong> ${record.pieces}<br>
+          <strong>Price:</strong> ${record.price}<br>
+          <button class="edit-btn" onclick="editWishRecord('${record._id}', '${record.SetWish}', '${record.theme}', '${record.pieces}', '${record.price}')">Edit</button>
+          <button class="delete-btn" onclick="deleteWishRecord('${record._id}')">Delete</button>
+        </div>
+      `).join('');
+    }
+
     function editWishRecord(id, SetWish, theme, pieces, price) {
       editingIdWish = id;
       document.getElementById('SetWish').value = SetWish;
@@ -468,17 +507,16 @@
       showWishMessage('Editing record - click Update to save changes', 'success');
     }
 
-    // Delete record (Wishlist)
     async function deleteWishRecord(id) {
       if (!confirm('Are you sure you want to delete this record?')) return;
-      
+
       try {
         const response = await fetch(`/api/wishlist/${id}`, {
           method: 'DELETE'
         });
 
         const result = await response.json();
-        
+
         if (response.ok) {
           showWishMessage(result.message, 'success');
           loadWishlist();
@@ -490,7 +528,6 @@
       }
     }
 
-    // Show message (Wishlist)
     function showWishMessage(text, type) {
       const messageDiv = document.getElementById('wishMessage');
       messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
@@ -499,10 +536,9 @@
       }, 3000);
     }
 
-    // Initialize page
     loadProgress();
     loadWishlist();
-
   </script>
 </body>
+
 </html>
