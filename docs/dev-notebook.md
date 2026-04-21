@@ -38,5 +38,5 @@
 
 ## April 20th, 2026
 - Completed my Search Function **(+ 10 pts)**
-  - <a href="<a href=https://github.com/ccantrell2/coco-devops/issues/11" target="_blank">Finished Deployment Guide
+  - <a href="https://github.com/ccantrell2/coco-devops/issues/11" target="_blank">Finished Search Function Issue
   - I finally completed my search function for my lego app. My new code stores the database entries in an array and filters through them dynamically so the search result appears on the page for the user. I chose to do this because a search feature allows me to get the exact entry I want for that time being.
