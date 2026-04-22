@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <!-- got all of this code from here: https://github.com/barrycumbie/full-stack-authn-example-->
+    <style>
+        body {
+            font-family: "Courier New", sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .token-display {
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.8em;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="messages"></div>
+
+    <div id="authForms">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">Login</h5>
+            </div>
+            <div class="card-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="loginUsername" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="loginUsername" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header bg-warning text-white">
+            <h5 class="mb-0">Create Account</h5>
+        </div>
+        <div class="card-body">
+            <form id="registerForm">
+                <div class="mb-3">
+                    <label for="registerUsername" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="registerUsername" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                    <div class="form-text">Password must be at least 6 characters long</div>
+                </div>
+                <button type="submit" class="btn btn-warning w-100">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('token');
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectedFrom = urlParams.get('redirect');
+
+            if (redirectedFrom) {
+                showMessage('Please enter Login credentials', 'warning');
+            }
+
+            if (token) {
+                window.location.href = '/index.html';
+            }
+        });
+
+        // Show message to user
+        function showMessage(message, type = 'info') {
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+            setTimeout(() => {
+                messagesDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        // Register new user
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage(`Account created.`, 'success');
+                    document.getElementById('registerForm').reset();
+                } else {
+                    showMessage(`Registration failed: ${result.error}`, 'danger');
+                }
+            } catch (error) {
+                showMessage(`Network error: ${error.message}`, 'danger');
+            }
+        });
+
+        // Login user
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('token', result.token);
+                    localStorage.setItem('username', result.user.username);
+
+                    showMessage(`✅ Login successful! Welcome, ${result.user.username}!`, 'success');
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectTo = urlParams.get('redirect');
+
+                    if (redirectTo) {
+                        setTimeout(() => {
+                            window.location.href = redirectTo + '?from=login';
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            window.location.href = '/index.html';
+                        }, 1000);
+                    }
+                } else {
+                    showMessage(`Login failed: ${result.error}`, 'danger');
+                }
+            } catch (error) {
+                showMessage(`Network error: ${error.message}`, 'danger');
+            }
+        });
+
+        // Logout user
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = '/login.html';
+        }
+    </script>
+
+</body>
+
+</html>

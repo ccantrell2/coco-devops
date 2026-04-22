@@ -165,6 +165,11 @@
       display: flex;
       align-items: center;
     }
+
+    .logout {
+      background: #FF8C00;
+      color: white;
+    }
   </style>
 </head>
 
@@ -172,7 +177,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand">
-        <img src="https://logos-world.net/wp-content/uploads/2020/09/LEGO-Logo.png" alt="legoLogo" width="70" height="40">
+        <img src="https://logos-world.net/wp-content/uploads/2020/09/LEGO-Logo.png" alt="legoLogo" width="70"
+          height="40">
       </a>
       <a class="navbar-brand">LEGO App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -194,6 +200,7 @@
         <form class="d-flex ms-auto">
           <input id="searchBar" class="form-control" type="search" placeholder="Search Entries">
         </form>
+        <button id="logout" type="button">Logout</button>
       </div>
     </div>
   </nav>
@@ -278,13 +285,35 @@
         <span class="text">&copy; Cohen Cantrell</span>
         <span class="text"></span>
         <a href="https://github.com/ccantrell2/coco-devops" class="footer-link" target="_blank">Source</a>
-        <a href="https://wave.webaim.org/report#/https://legodevops.barrycumbie.com/" class="footer-link" target="_blank">WAVE</a>
+        <a href="https://wave.webaim.org/report#/https://legodevops.barrycumbie.com/" class="footer-link"
+          target="_blank">WAVE</a>
         <a href="https://github.com/ccantrell2/coco-devops" class="footer-link" target="_blank">Validator</a>
       </ol>
     </div>
   </footer>
 
   <script>
+    if (!localStorage.getItem('token')) {
+      window.location.href = '/login.html';
+    }
+
+    function getAuthHeaders(includeContentType = true) {
+      const headers = {};
+
+      if (includeContentType) {
+        headers['Content-Type'] = 'application/json';
+      }
+
+      headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+      return headers;
+    }
+
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      window.location.href = '/login.html';
+    });
+
     let editingId = null;
     let editingIdWish = null;
 
@@ -311,9 +340,7 @@
 
         const response = await fetch(url, {
           method: method,
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(true),
           body: JSON.stringify({
             date,
             Setname,
@@ -323,6 +350,13 @@
         });
 
         const result = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/login.html';
+          return;
+        }
 
         if (response.ok) {
           showMessage(result.message, 'success');
@@ -342,8 +376,18 @@
 
     async function loadProgress() {
       try {
-        const response = await fetch('/api/current');
+        const response = await fetch('/api/current', {
+          headers: getAuthHeaders(false)
+        });
         const records = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/login.html';
+          return;
+        }
+
         currentProgressRecords = records;
         renderProgress(document.getElementById('searchBar').value.toLowerCase().trim());
       } catch (error) {
@@ -392,10 +436,18 @@
 
       try {
         const response = await fetch(`/api/current/${id}`, {
-          method: 'DELETE'
+          method: 'DELETE',
+          headers: getAuthHeaders(false)
         });
 
         const result = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/login.html';
+          return;
+        }
 
         if (response.ok) {
           showMessage(result.message, 'success');
@@ -430,9 +482,7 @@
 
         const response = await fetch(url, {
           method: method,
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(true),
           body: JSON.stringify({
             SetWish,
             theme,
@@ -442,6 +492,13 @@
         });
 
         const result = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/login.html';
+          return;
+        }
 
         if (response.ok) {
           showWishMessage(result.message, 'success');
@@ -461,8 +518,18 @@
 
     async function loadWishlist() {
       try {
-        const response = await fetch('/api/wishlist');
+        const response = await fetch('/api/wishlist', {
+          headers: getAuthHeaders(false)
+        });
         const records = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/login.html';
+          return;
+        }
+
         wishlistRecords = records;
         renderWishlist(document.getElementById('searchBar').value.toLowerCase().trim());
       } catch (error) {
@@ -512,10 +579,18 @@
 
       try {
         const response = await fetch(`/api/wishlist/${id}`, {
-          method: 'DELETE'
+          method: 'DELETE',
+          headers: getAuthHeaders(false)
         });
 
         const result = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/login.html';
+          return;
+        }
 
         if (response.ok) {
           showWishMessage(result.message, 'success');
