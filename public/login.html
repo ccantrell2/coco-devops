@@ -12,12 +12,12 @@
         body {
             font-family: "Courier New", sans-serif;
             background: #111;
-            color: white;
+            color: #111;
         }
 
         .auth-container {
             max-width: 500px;
-            margin: 50px auto;
+            margin: 80px auto;
         }
 
         .token-display {
@@ -33,6 +33,27 @@
         .hidden {
             display: none;
         }
+
+        #loginForm {
+              background: #d11013;
+              padding: 20px;
+              border-radius: 5px;
+        }
+
+        #registerForm {
+                background: #f6ec35;
+                padding: 20px;
+                border-radius: 5px;
+        }
+
+        #Forms {
+              background: #333;
+              padding: 20px;
+              border-radius: 5px;
+              max-width: 500px;
+              margin: 80px auto;
+        }
+
     </style>
 </head>
 
@@ -40,7 +61,7 @@
 
     <div id="messages"></div>
 
-    <div id="authForms">
+    <div id="Forms">
         <div class="card">
             <div class="card-header bg-danger text-white">
                 <h5 class="mb-0">Login</h5>
@@ -55,13 +76,13 @@
                         <label for="loginPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="loginPassword" required>
                     </div>
-                    <button type="submit" class="btn btn-danger w-100">Login</button>
+                    <button type="submit" class="btn btn-dark w-100">Login</button>
                 </form>
             </div>
         </div>
-    </div>
+    
 
-    <div class="card mb-3">
+    <div class="card mt-4">
         <div class="card-header bg-warning text-white">
             <h5 class="mb-0">Create Account</h5>
         </div>
@@ -74,11 +95,11 @@
                 <div class="mb-3">
                     <label for="registerPassword" class="form-label">Password</label>
                     <input type="password" class="form-control" id="registerPassword" required minlength="6">
-                    <div class="form-text">Password must be at least 6 characters long</div>
                 </div>
-                <button type="submit" class="btn btn-warning w-100">Register</button>
+                <button type="submit" class="btn btn-dark w-100">Register</button>
             </form>
         </div>
+    </div>
     </div>
 
     <script>
@@ -96,7 +117,6 @@
             }
         });
 
-        // Show message to user
         function showMessage(message, type = 'info') {
             const messagesDiv = document.getElementById('messages');
             messagesDiv.innerHTML = `
@@ -110,7 +130,6 @@
             }, 5000);
         }
 
-        // Register new user
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -139,7 +158,6 @@
             }
         });
 
-        // Login user
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -161,8 +179,6 @@
                     localStorage.setItem('token', result.token);
                     localStorage.setItem('username', result.user.username);
 
-                    showMessage(`✅ Login successful! Welcome, ${result.user.username}!`, 'success');
-
                     const urlParams = new URLSearchParams(window.location.search);
                     const redirectTo = urlParams.get('redirect');
 
@@ -183,7 +199,6 @@
             }
         });
 
-        // Logout user
         function logout() {
             localStorage.removeItem('token');
             localStorage.removeItem('username');
