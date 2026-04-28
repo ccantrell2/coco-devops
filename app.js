@@ -36,7 +36,6 @@ async function run() {
 }
 run();
 
-// JWT authentication middleware
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -61,16 +60,10 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Default route goes to login page
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'public', 'login.html'));
 });
 
-// =========================
-// AUTH ROUTES
-// =========================
-
-// Register new user
 app.post('/api/auth/register', async (req, res) => {
   try {
     const db = client.db('legoList');
@@ -112,7 +105,6 @@ app.post('/api/auth/register', async (req, res) => {
   }
 });
 
-// Login existing user
 app.post('/api/auth/login', async (req, res) => {
   try {
     const db = client.db('legoList');
@@ -152,7 +144,6 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// Get current logged-in user
 app.get('/api/auth/me', authenticateToken, async (req, res) => {
   try {
     const db = client.db('legoList');
@@ -171,10 +162,6 @@ app.get('/api/auth/me', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to get user info: ' + error.message });
   }
 });
-
-// =========================
-// CURRENT PROGRESS ROUTES
-// =========================
 
 // CREATE current progress
 app.post('/api/current', authenticateToken, async (req, res) => {
@@ -277,10 +264,6 @@ app.delete('/api/current/:id', authenticateToken, async (req, res) => {
     res.status(500).json({ error: 'Failed to delete current progress: ' + error.message });
   }
 });
-
-// =========================
-// WISHLIST ROUTES
-// =========================
 
 // CREATE wishlist item
 app.post('/api/wishlist', authenticateToken, async (req, res) => {
