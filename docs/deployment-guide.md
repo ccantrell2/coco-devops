@@ -75,6 +75,6 @@
 ## What is Pm2 + Nginx?
 - Pm2 is a dameon process manager that includes a built in load balancer. Using pm2 will allow your app to keep running forever and reload with little to no downtime. Nginx is an HTTP web server, reverse proxy, content cache, load balancer, TCP/UDP proxy server, and mail proxy server. Nginx can complete many tasks but some of the thing I am using nginx for is to serve static and index files and virtual servers for IP adresses.
 
-## Enviroment Varaibleds Dcoumentation
+## Enviroment Variables Documentation
 - The main enviroment variable that is going to be used in the VM is the MONGO URI. The MONGO URI uses the database name and password to connect to a certain database and collect entries. That is what keeps mongo running.
 
