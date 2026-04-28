@@ -2,7 +2,7 @@ name: deploy-main-to-gcp.yml
 
 on:
   push:
-    branches: [main]
+    branches: [iss9]
   workflow_dispatch:
 
 jobs:

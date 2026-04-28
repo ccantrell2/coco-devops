@@ -38,5 +38,10 @@
 
 ## April 20th, 2026
 - Completed my Search Function **(+ 10 pts)**
-  - <a href="https://github.com/ccantrell2/coco-devops/issues/11" target="_blank">Finished Search Function Issue
+  - <a href="https://github.com/ccantrell2/coco-devops/issues/11" target="_blank">Finished Search Function Issue</a>
   - I finally completed my search function for my lego app. My new code stores the database entries in an array and filters through them dynamically so the search result appears on the page for the user. I chose to do this because a search feature allows me to get the exact entry I want for that time being.
+
+## April 22nd, 2026
+- Completed the Authentication Upgrade section **( + 10 pts)**
+  - <a href="https://github.com/ccantrell2/coco-devops/issues/19" target="_blank">Authentication Upgrade Issue</a>
+  - I completed the authentication side for my app. This took me quite awhile and it was very confusing on where to put the code needed. I had to create a whole login page but the tutorial from Dr. Cumbie really helped me in my implementation of this. I chose to do an authentication upgrade because it allows for a secure way to use my app.
